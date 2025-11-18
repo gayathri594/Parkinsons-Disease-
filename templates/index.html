@@ -1,0 +1,219 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parkinson Predictor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url("static/background.jpg") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f4f4f4;
+            width: 100%;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        img {
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            height: auto;
+        }
+
+        h2, h3 {
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Drawing to Predict Parkinson</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if image_path %}
+            <h3>Uploaded Image:</h3>
+            <img src="{{ url_for('static', filename=image_path.split('/')[-1]) }}" width="200">
+        {% endif %}
+
+        {% if prediction %}
+            <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parkinson Predictor</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            /* FULL PAGE BACKGROUND IMAGE (Corrected) */
+            background: url("{{ url_for('static', filename='background.jpg') }}") 
+                        no-repeat center center fixed;
+            background-size: cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            /* CONTAINER BACKGROUND IMAGE */
+            background: url("{{ url_for('static', filename='bg2.jpg') }}") 
+                        no-repeat center center;
+            background-size: cover;
+
+            /* White glass effect */
+            backdrop-filter: blur(6px);
+            background-color: rgba(255, 255, 255, 0.82);
+
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            width: 60%;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        img {
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            height: auto;
+        }
+
+        h2, h3 {
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Upload Drawing to Predict Parkinson</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if filename %}
+            <h3>Uploaded Image:</h3>
+            <img src="{{ url_for('uploaded_file', filename=filename) }}" width="200">
+        {% endif %}
+
+        {% if prediction %}
+            <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+<!--C:\Users\ADMIN\Downloads\parkinson_app\parkinson_app\static\background.jpg -->
